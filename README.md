@@ -12,9 +12,14 @@ You can safely skip the node.js configuration as we will provide a docker image 
 
 
 # Hyperleder network setup
-We first need to download the Hyperledger 1.3 docker images and binaries. Do do that, you can simply run this script:
+First, choose your working directory and clone the code4fun Git repository:
+`git clone https://github.com/ggoutaudier/code4fun`
 
+We also need to download the Hyperledger 1.3 docker images and binaries. Hyperledger provides a simple script to do that:
 `curl -sSL http://bit.ly/2ysbOFE | bash -s 1.3.0 1.3.0 0.4.13`
+
+## Test
+
 
 
 
