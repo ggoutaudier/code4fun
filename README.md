@@ -14,7 +14,7 @@ You can safely skip the node.js configuration as we will provide a docker image 
 # Hyperleder network setup
 We first need to download the Hyperledger 1.3 docker images and binaries. Do do that, you can simply run this script:
 
-`curl -sSL http://bit.ly/2ysbOFE | bash -s 1.3.0 1.3.0 0.4.13`
+`curl -sSL http://bit.ly/2ysbOFE | bash -s 1.3.0 1.3.0 0.4.13`
 
 
 
