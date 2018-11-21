@@ -14,14 +14,17 @@ You can safely skip the node.js configuration as we will provide a docker image 
 # Hyperleder network setup
 ## Download all you need
 First, choose your working directory and clone the code4fun Git repository:
+
 `git clone https://github.com/ggoutaudier/code4fun`
 
 We also need to download the Hyperledger 1.3 docker images and binaries. Hyperledger provides a simple script to do that:
+
 `curl -sSL http://bit.ly/2ysbOFE | bash -s 1.3.0 1.3.0 0.4.13`
 
 ## Generate the certificates
 We will first generate the certificates used by the different entities composing the Hyperledger network.
 To do that, we will use the `cryptogen` tool. 
+
 First review the ./code4fun/crypto-config-code4fun.yaml file:
 ```
 # ---------------------------------------------------------------------------
@@ -57,7 +60,8 @@ PeerOrgs:
 ```
 
 Now generate the certificates:
-`./fabric-samples/bin/cryptogen generate --config=./code4fun/crypto-config.yaml`
+
+./fabric-samples/bin/cryptogen generate --config=./code4fun/crypto-config.yaml`
 
 
 
