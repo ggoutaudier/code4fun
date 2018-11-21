@@ -25,7 +25,7 @@ We also need to download the Hyperledger 1.3 docker images and binaries. Hyperle
 We will first generate the certificates used by the different entities composing the Hyperledger network.
 To do that, we will use the `cryptogen` tool. 
 
-First review the ./code4fun/crypto-config-code4fun.yaml file:
+First review the ./code4fun/crypto-config.yaml file:
 ```
 # ---------------------------------------------------------------------------
 # "OrdererOrgs" - Definition of organizations managing orderer nodes
@@ -61,7 +61,29 @@ PeerOrgs:
 
 Now generate the certificates:
 
-./fabric-samples/bin/cryptogen generate --config=./code4fun/crypto-config.yaml`
+`./fabric-samples/bin/cryptogen generate --config=./code4fun/crypto-config.yaml`
+
+A new `crypto-config` directory has been created. Have a look at its structure and the various files that have been generated.
+
+## Generate the first transactions
+Now it is time to configure the Blockchain network. This will be done by submitting transactions to the network.
+We need to generate 3 transactions:
+- the orderer genesis block,
+- the channel configuration transaction,
+- and two anchor peer transactions - one for each Peer Org.
+
+We will generate all these transactions using the `configtxgen` command and the `./code4fun/configtx.yaml` configuration file:
+```
+copy file content here
+```
+
+First things first, let's create the Orderer genesis block (which can be understood as the initial setup of the system channel):
+
+```
+./fabric-samples/bin/configtxgen -configPath ./code4fun/configtx.yaml -profile TwoOrgsOrdererGenesis -channelID code4fun-sys-channel -outputBlock ./channel-artifacts/genesis.block
+```
+
+
 
 
 
