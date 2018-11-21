@@ -14,18 +14,27 @@ You can safely skip the node.js configuration as we will provide a docker image 
 # Hyperleder network setup
 ## Download all you need
 First, choose your working directory and clone the code4fun Git repository:
+```
+git clone https://github.com/ggoutaudier/code4fun
+```
 
-`git clone https://github.com/ggoutaudier/code4fun`
+For the rest of the workshop we will work from the code4fun directory:
+```
+cd code4fun
+```
 
-We also need to download the Hyperledger 1.3 docker images and binaries. Hyperledger provides a simple script to do that:
 
-`curl -sSL http://bit.ly/2ysbOFE | bash -s 1.3.0 1.3.0 0.4.13`
+We need to download the Hyperledger 1.3 docker images and binaries. Hyperledger provides a simple script to do that:
+```
+curl -sSL http://bit.ly/2ysbOFE | bash -s 1.3.0 1.3.0 0.4.13
+```
+
 
 ## Generate the certificates
 We will first generate the certificates used by the different entities composing the Hyperledger network.
 To do that, we will use the `cryptogen` tool. 
 
-First review the ./code4fun/crypto-config.yaml file:
+First review the `crypto-config.yaml` file:
 ```
 # ---------------------------------------------------------------------------
 # "OrdererOrgs" - Definition of organizations managing orderer nodes
@@ -61,7 +70,7 @@ PeerOrgs:
 
 Now generate the certificates:
 
-`./fabric-samples/bin/cryptogen generate --config=./code4fun/crypto-config.yaml`
+`./fabric-samples/bin/cryptogen generate --config=./crypto-config.yaml`
 
 A new `crypto-config` directory has been created. Have a look at its structure and the various files that have been generated.
 
@@ -72,7 +81,7 @@ We need to generate 3 transactions:
 - the channel configuration transaction,
 - and two anchor peer transactions - one for each Peer Org.
 
-We will generate all these transactions using the `configtxgen` command and the `./code4fun/configtx.yaml` configuration file:
+We will generate all these transactions using the `configtxgen` command and the `configtx.yaml` configuration file:
 ```
 copy file content here
 ```
@@ -80,7 +89,7 @@ copy file content here
 First things first, let's create the Orderer genesis block (which can be understood as the initial setup of the system channel):
 
 ```
-./fabric-samples/bin/configtxgen -configPath ./code4fun/configtx.yaml -profile TwoOrgsOrdererGenesis -channelID code4fun-sys-channel -outputBlock ./channel-artifacts/genesis.block
+./fabric-samples/bin/configtxgen -profile TwoOrgsOrdererGenesis -channelID code4fun-sys-channel -outputBlock ./channel-artifacts/genesis.block
 ```
 
 
