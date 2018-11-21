@@ -1,0 +1,88 @@
+
+version: '2'
+
+volumes:
+  orderer.code4fun.com:
+  peer1.geneva.code4fun.com:
+  peer2.geneva.code4fun.com:
+  peer1.zurich.code4fun.com:
+  peer2.zurich.code4fun.com:
+
+networks:
+  code4fun:
+
+services:
+
+  orderer.code4fun.com:
+    extends:
+      file:   base/docker-compose-base.yaml
+      service: orderer.code4fun.com
+    container_name: orderer.code4fun.com
+    networks:
+      - code4fun
+
+  peer1.geneva.code4fun.com:
+    container_name: peer1.geneva.code4fun.com
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer1.geneva.code4fun.com
+    networks:
+      - code4fun
+
+  peer2.geneva.code4fun.com:
+    container_name: peer2.geneva.code4fun.com
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer2.geneva.code4fun.com
+    networks:
+      - code4fun
+
+  peer1.zurich.code4fun.com:
+    container_name: peer1.zurich.code4fun.com
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer1.zurich.code4fun.com
+    networks:
+      - code4fun
+
+  peer2.zurich.code4fun.com:
+    container_name: peer2.zurich.code4fun.com
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer2.zurich.code4fun.com
+    networks:
+      - code4fun
+
+  cli:
+    container_name: cli
+    image: hyperledger/fabric-tools:1.3.0
+    tty: true
+    stdin_open: true
+    environment:
+      - GOPATH=/opt/gopath
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      #- CORE_LOGGING_LEVEL=DEBUG
+      - CORE_LOGGING_LEVEL=INFO
+      - CORE_PEER_ID=cli
+      - CORE_PEER_ADDRESS=peer1.geneva.code4fun.com:7051
+      - CORE_PEER_LOCALMSPID=GenevaMSP
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/geneva.code4fun.com/peers/peer1.geneva.code4fun.com/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/geneva.code4fun.com/peers/peer1.geneva.code4fun.com/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/geneva.code4fun.com/peers/peer1.geneva.code4fun.com/tls/ca.crt
+      - CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/geneva.code4fun.com/users/Admin@geneva.code4fun.com/msp
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+    command: /bin/bash
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./chaincode/:/opt/gopath/src/github.com/chaincode
+        - ./crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
+        - ./scripts:/opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/
+        - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
+    depends_on:
+      - peer1.geneva.code4fun.com
+      - peer2.geneva.code4fun.com
+      - peer1.zurich.code4fun.com
+      - peer2.zurich.code4fun.com
+    networks:
+      - code4fun
