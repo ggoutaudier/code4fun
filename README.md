@@ -89,9 +89,23 @@ copy file content here
 First things first, let's create the Orderer genesis block (which can be understood as the initial setup of the system channel):
 
 ```
+export FABRIC_CFG_PATH=$PWD
+mkdir channel-artifacts
 ./fabric-samples/bin/configtxgen -profile TwoOrgsOrdererGenesis -channelID code4fun-sys-channel -outputBlock ./channel-artifacts/genesis.block
 ```
 
+Now we can create the channel configuration:
+```
+./fabric-samples/bin/configtxgen -profile TwoOrgsChannel -channelID code4fun-sys-channel -outputCreateChannelTx ./channel-artifacts/channel.tx 
+```
+
+Finally we can create the transactions defining the anchor peers:
+```
+./fabric-samples/bin/configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/GenevaMSPanchors.tx -channelID code4fun-sys-channel -asOrg GenevaMSP
+./fabric-samples/bin/configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/ZurichMSPanchors.tx -channelID code4fun-sys-channel -asOrg ZurichMSP
+```
+
+## Start the network
 
 
 
