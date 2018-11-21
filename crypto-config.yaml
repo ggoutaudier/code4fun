@@ -1,0 +1,31 @@
+# ---------------------------------------------------------------------------
+# "OrdererOrgs" - Definition of organizations managing orderer nodes
+# ---------------------------------------------------------------------------
+OrdererOrgs:
+  - Name: Orderer
+    Domain: code4fun.com
+    Specs:
+      - Hostname: orderer
+
+# ---------------------------------------------------------------------------
+# "PeerOrgs" - Definition of organizations managing peer nodes
+# ---------------------------------------------------------------------------
+PeerOrgs:
+  - Name: Geneva
+    Domain: geneva.code4fun.com
+    EnableNodeOUs: true
+    Specs:
+    - Hostname: peer1
+    - Hostname: peer2
+    Users:
+      Count: 1
+
+  - Name: Zurich
+    Domain: zurich.code4fun.com
+    EnableNodeOUs: true
+    Specs:
+    - Hostname: peer1
+    - Hostname: peer2
+    Users:
+      Count: 1
+
