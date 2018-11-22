@@ -106,9 +106,15 @@ Finally we can create the transactions defining the anchor peers:
 ```
 
 ## Start the network
+All the containers composing the blockchain network (orderers, peers, and cli) are described in a docker-compose yaml file.
+Take a couple of minutes to have a look at the `docker-compose-cli.yaml` and `base/*` files that are provided.
 
+In particular, double check that the mounted volumes correspond to the crypto-config folder that we previously created (remember, this is the folder that contains all the certificates that will be used by the different components to identify themselves on the Blockchain network).
 
-
+Now open a new terminal and start the network:
+```
+docker-compose -f docker-compose-cli.yaml up
+```
 
 # Chaincode installation
 blahblah
