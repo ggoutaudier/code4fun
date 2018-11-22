@@ -116,6 +116,11 @@ Now open a new terminal and start the network:
 docker-compose -f docker-compose-cli.yaml up
 ```
 
+## Create the channel
+peer channel create -o orderer.code4fun.com:7050 -c swiss-channel -f ./channel-artifacts/channel.tx --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/code4fun.com/orderers/orderer.code4fun.com/msp/tlscacerts/tlsca.code4fun.com-cert.pem
+
+
+
 # Chaincode installation
 blahblah
 
