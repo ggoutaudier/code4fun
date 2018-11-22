@@ -101,8 +101,8 @@ Now we can create the channel configuration:
 
 Finally we can create the transactions defining the anchor peers:
 ```
-./fabric-samples/bin/configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/GenevaMSPanchors.tx -channelID code4fun-sys-channel -asOrg GenevaMSP
-./fabric-samples/bin/configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/ZurichMSPanchors.tx -channelID code4fun-sys-channel -asOrg ZurichMSP
+./fabric-samples/bin/configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/GenevaMSPanchors.tx -channelID swiss-channel -asOrg GenevaMSP
+./fabric-samples/bin/configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/ZurichMSPanchors.tx -channelID swiss-channel -asOrg ZurichMSP
 ```
 
 ## Start the network
