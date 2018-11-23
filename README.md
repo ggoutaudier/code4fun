@@ -127,4 +127,10 @@ If you notice issues while starting the network, use this command to properly sh
 
 docker-compose -f docker-compose-cli.yaml down --volumes --remove-orphans
 ```
+If you also need to regenerate the certificates and the channel artifacts:
+```
+rm -rf crypto-config
+rm channel-artifacts/*
+```
+
 
