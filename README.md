@@ -117,7 +117,10 @@ docker-compose -f docker-compose-cli.yaml up
 ```
 
 ## Create the channel
+Connet to the CLI container and create a channel using the `channel.tx` file that we created previously:
+```
 peer channel create -o orderer.code4fun.com:7050 -c swiss-channel -f ./channel-artifacts/channel.tx --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/code4fun.com/orderers/orderer.code4fun.com/msp/tlscacerts/tlsca.code4fun.com-cert.pem
+```
 
 
 
@@ -128,4 +131,9 @@ blahblah
 blahblah
 
 
+### Troubleshooting
+If you notice issues while starting the network, use this command to properly shut down all the containers:
+```
+docker-compose -f docker-compose-cli.yaml down --volumes --remove-orphans
+```
 
