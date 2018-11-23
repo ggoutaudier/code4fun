@@ -28,6 +28,7 @@ curl -sSL http://bit.ly/2ysbOFE | bash -s 1.3.0 1.3.0 0.4.13
 ```
 
 # Hyperleder network setup
+
 ## Generate the certificates
 We will first generate the certificates used by the different entities composing the Hyperledger network.
 To do that, we will use the `cryptogen` tool. 
