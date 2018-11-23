@@ -101,6 +101,18 @@ CORE_PEER_LOCALMSPID="ZurichMSP"
 CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/zurich.code4fun.com/peers/peer1.zurich.code4fun.com/tls/ca.crt 
 peer channel join -b swiss-channel.block
 ```
+In the next sections we will use the `` and `` scripts to update the environment instead.
+
+
+## Definition of the anchor peers
+Enter the following commands to set `peer1.geneva.code4fun.com` and `peer1.zurich.code4fun.com` as anchor peers for the Geneva and Zurich organisations respectively:
+```
+. scripts/setenv_gva_peer.sh
+peer channel update -o orderer.code4fun.com:7050 -c swiss-channel -f ./channel-artifacts/GenevaMSPanchors.tx --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/code4fun.com/orderers/orderer.code4fun.com/msp/tlscacerts/tlsca.code4fun.com-cert.pem
+. scripts/setenv_gva_peer.sh
+peer channel update -o orderer.code4fun.com:7050 -c swiss-channel -f ./channel-artifacts/ZurichMSPanchors.tx --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/code4fun.com/orderers/orderer.code4fun.com/msp/tlscacerts/tlsca.code4fun.com-cert.pem
+```
+
 
 # Chaincode installation
 blahblah
@@ -109,7 +121,7 @@ blahblah
 blahblah
 
 
-### Troubleshooting
+# Troubleshooting
 If you notice issues while starting the network, use this command to properly shut down all the containers:
 ```
 

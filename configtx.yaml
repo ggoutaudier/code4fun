@@ -47,7 +47,7 @@ Organizations:
                 Type: Signature
                 Rule: "OR('ZurichMSP.admin')"
         AnchorPeers:
-            - Host: peer1.zurich.example.com
+            - Host: peer1.zurich.code4fun.com
               Port: 7051
 
 Capabilities:
@@ -58,7 +58,7 @@ Capabilities:
     # Orderer capabilities apply only to the orderers, and may be safely
     # used with prior release peers.
     Orderer: &OrdererCapabilities
-        V1_3: true
+        V1_1: true
     # Application capabilities apply only to the peer network, and may be safely
     # used with prior release orderers.
     Application: &ApplicationCapabilities
