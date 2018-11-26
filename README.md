@@ -89,22 +89,29 @@ peer channel create -o orderer.code4fun.com:7050 -c swiss-channel -f ./channel-a
 You may have noticed that the docker-compose files contained some environment variables pointing to the `peer1.geneva.code4fun.com` peer. The command that we just executed was therefore processed through this peer.
 
 
-## Add peer to the channel
-From the CLI container run the following command to join a peer to the channel:
-```
-peer channel join -b swiss-channel.block
-```
-Remember that we are sending the commands through `peer1.geneva.code4fun.com`. It is therefore this peer that will be joined to the channel. If you look at the logs in the other terminal, you should see several lines from the peer1.geneva.code4fun.com container illustrating this joining process.
-
-Now let's update the relevant environment variables and ask peer1.zurich.code4fun.com to join the network as well:
+## Add peers to the channel
+In this section we will send commands to the different peers from the CLI. To target a specifc peer, the following environment variables need to be set (example for peer1.zurich.code4fun.com):
 ```
 CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/zurich.code4fun.com/users/Admin@zurich.code4fun.com/msp 
 CORE_PEER_ADDRESS=peer1.zurich.code4fun.com:7051 
 CORE_PEER_LOCALMSPID="ZurichMSP" 
 CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/zurich.code4fun.com/peers/peer1.zurich.code4fun.com/tls/ca.crt 
+```
+We create a few helper scripts to change these environment variables for each peer in the network: see `setenv_gva_peer1.sh`, `setenv_gva_peer2.sh`, `setenv_zh_peer1.sh`, and `setenv_zh_peer1.sh` in the `./scripts` directory. We will use these scripts in the rest of manually setting the environment variables.
+
+Run the following command to join all the peers to the network:
+```
+. scripts/setenv_gva_peer1.sh
+peer channel join -b swiss-channel.block
+. scripts/setenv_gva_peer2.sh
+peer channel join -b swiss-channel.block
+. scripts/setenv_zh_peer.sh
+peer channel join -b swiss-channel.block
+. scripts/setenv_zh_peer.sh
 peer channel join -b swiss-channel.block
 ```
-In the next sections we will use the `` and `` scripts to update the environment instead.
+
+If you look at the logs in the other terminal, you should see several message from each peer1.geneva.code4fun.com while joining the network.
 
 
 ## Definition of the anchor peers
