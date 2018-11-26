@@ -97,7 +97,7 @@ CORE_PEER_ADDRESS=peer1.zurich.code4fun.com:7051
 CORE_PEER_LOCALMSPID="ZurichMSP" 
 CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/zurich.code4fun.com/peers/peer1.zurich.code4fun.com/tls/ca.crt 
 ```
-We create a few helper scripts to change these environment variables for each peer in the network: see `setenv_gva_peer1.sh`, `setenv_gva_peer2.sh`, `setenv_zh_peer1.sh`, and `setenv_zh_peer1.sh` in the `./scripts` directory. We will use these scripts in the rest of manually setting the environment variables.
+We created a few helper scripts to change these environment variables for each peer in the network: see `setenv_gva_peer1.sh`, `setenv_gva_peer2.sh`, `setenv_zh_peer1.sh`, and `setenv_zh_peer1.sh` in the `./scripts` directory. We will use these scripts instead of manually setting the environment variables.
 
 Run the following command to join all the peers to the network:
 ```
