@@ -34,7 +34,9 @@ We will first generate the certificates used by the different entities composing
 To do that, we will use the `cryptogen` tool. 
 
 Review the `crypto-config.yaml` file and generate the certificates:
-`./fabric-samples/bin/cryptogen generate --config=./crypto-config.yaml`
+```
+./fabric-samples/bin/cryptogen generate --config=./crypto-config.yaml
+```
 
 A new `crypto-config` directory has been created. Have a look at its structure and the various files that have been generated.
 
