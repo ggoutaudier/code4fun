@@ -105,9 +105,9 @@ Run the following command to join all the peers to the network:
 peer channel join -b swiss-channel.block
 . scripts/setenv_gva_peer2.sh
 peer channel join -b swiss-channel.block
-. scripts/setenv_zh_peer.sh
+. scripts/setenv_zh_peer1.sh
 peer channel join -b swiss-channel.block
-. scripts/setenv_zh_peer.sh
+. scripts/setenv_zh_peer2.sh
 peer channel join -b swiss-channel.block
 ```
 
@@ -117,9 +117,9 @@ If you look at the logs in the other terminal, you should see several message fr
 ## Definition of the anchor peers
 Enter the following commands to set `peer1.geneva.code4fun.com` and `peer1.zurich.code4fun.com` as anchor peers for the Geneva and Zurich organisations respectively:
 ```
-. scripts/setenv_gva_peer.sh
+. scripts/setenv_gva_peer1.sh
 peer channel update -o orderer.code4fun.com:7050 -c swiss-channel -f ./channel-artifacts/GenevaMSPanchors.tx --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/code4fun.com/orderers/orderer.code4fun.com/msp/tlscacerts/tlsca.code4fun.com-cert.pem
-. scripts/setenv_gva_peer.sh
+. scripts/setenv_zh_peer1.sh
 peer channel update -o orderer.code4fun.com:7050 -c swiss-channel -f ./channel-artifacts/ZurichMSPanchors.tx --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/code4fun.com/orderers/orderer.code4fun.com/msp/tlscacerts/tlsca.code4fun.com-cert.pem
 ```
 
