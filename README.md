@@ -125,9 +125,19 @@ peer channel update -o orderer.code4fun.com:7050 -c swiss-channel -f ./channel-a
 
 
 # Chaincode installation
-blahblah
+Let's install the chaincode on peer1.geneva.code4fun.com:
+```
+. scripts/setenv_gva_peer1.sh
+peer chaincode install -n mycc -v 1.0 -p github.com/chaincode/chaincode_example02/go/
+```
+Note that the -p parameter corresponds to the `$GOPATH/src`, i.e. `/opt/gopath/src`, and that `./chaincode` is mounted on `/opt/gopath/src/github.com/chaincode` in the CLI container, therefore the given path.
 
-# Optional - To go further
+Now we can instantiate the chaincode on the channel:
+```
+peer chaincode instantiate -o orderer.example.com:7050 --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/code4fun.com/orderers/orderer.code4fun.com/msp/tlscacerts/tlsca.code4fun.com-cert.pem -C swiss-channel -n mycc -v 1.0 -c '{"Args":["init","a", "100", "b","200"]}' -P "AND ('GenevaMSP.peer','ZurichMSP.peer')"
+```
+
+# Chaincode queries
 blahblah
 
 
