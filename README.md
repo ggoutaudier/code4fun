@@ -167,7 +167,7 @@ peer chaincode query -C swiss-channel -n mycc -c '{"Args":["query","b"]}'
 In this optional part we will play with the Simple Asset chaincode from this tutorial:
 `https://hyperledger-fabric.readthedocs.io/en/latest/chaincode4ade.html`
 
-Follow this tutorial until the *Building Chaincode* section. Then, instead of deploying the chaincode using dev mode, create deploy it on the `swiss-channel` that we previously created:
+Follow this tutorial until the **Building Chaincode** section. Then, instead of deploying the chaincode using dev mode, create deploy it on the `swiss-channel` that we previously created:
 
 ```
 . scripts/setenv_gva_peer1.sh
@@ -177,17 +177,14 @@ peer chaincode install -n sacc -v 1.0 -p github.com/chaincode/sacc/
 peer chaincode instantiate -o orderer.code4fun.com:7050 --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/code4fun.com/orderers/orderer.code4fun.com/msp/tlscacerts/tlsca.code4fun.com-cert.pem -C swiss-channel -n sacc -v 1.0 -c '{"Args":["key", "value"]}' -P "AND ('GenevaMSP.peer','ZurichMSP.peer')"
 
 ```
-Now craft your own Read and Write queries for the SimpleAsset chaincode, adapting what we did in the previous *Chaincode queries* section.
+Now craft your own Read and Write queries for the SimpleAsset chaincode, adapting what we did in the previous **Chaincode queries** section.
 
-### Hint:
-Try this ;-)
+### Hint: try this ;-)
 ```
+peer chaincode query -C swiss-channel -n sacc -c '{"Args":["get","key"]}'
 peer chaincode invoke -o orderer.code4fun.com:7050 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/code4fun.com/orderers/orderer.code4fun.com/msp/tlscacerts/tlsca.code4fun.com-cert.pem -C swiss-channel -n sacc --peerAddresses peer1.geneva.code4fun.com:7051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/geneva.code4fun.com/peers/peer1.geneva.code4fun.com/tls/ca.crt --peerAddresses peer1.zurich.code4fun.com:7051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/zurich.code4fun.com/peers/peer1.zurich.code4fun.com/tls/ca.crt -c '{"Args":["set","toto","tutu"]}'
 peer chaincode query -C swiss-channel -n sacc -c '{"Args":["get","toto"]}'
 ```
-
-
-
 
 
 # Troubleshooting
