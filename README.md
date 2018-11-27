@@ -134,7 +134,7 @@ Note that the -p parameter corresponds to the `$GOPATH/src`, i.e. `/opt/gopath/s
 
 Now we can instantiate the chaincode on the channel:
 ```
-peer chaincode instantiate -o orderer.example.com:7050 --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/code4fun.com/orderers/orderer.code4fun.com/msp/tlscacerts/tlsca.code4fun.com-cert.pem -C swiss-channel -n mycc -v 1.0 -c '{"Args":["init","a", "100", "b","200"]}' -P "AND ('GenevaMSP.peer','ZurichMSP.peer')"
+peer chaincode instantiate -o orderer.code4fun.com:7050 --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/code4fun.com/orderers/orderer.code4fun.com/msp/tlscacerts/tlsca.code4fun.com-cert.pem -C swiss-channel -n mycc -v 1.0 -c '{"Args":["init","a", "100", "b","200"]}' -P "AND ('GenevaMSP.peer','ZurichMSP.peer')"
 ```
 
 # Chaincode queries
