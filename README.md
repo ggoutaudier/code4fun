@@ -136,10 +136,32 @@ Now we can instantiate the chaincode on the channel:
 ```
 peer chaincode instantiate -o orderer.code4fun.com:7050 --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/code4fun.com/orderers/orderer.code4fun.com/msp/tlscacerts/tlsca.code4fun.com-cert.pem -C swiss-channel -n mycc -v 1.0 -c '{"Args":["init","a", "100", "b","200"]}' -P "AND ('GenevaMSP.peer','ZurichMSP.peer')"
 ```
+Note that `-P "AND ('GenevaMSP.peer','ZurichMSP.peer')"` argument. It means that transactions must be endorsed by a peer from the Geneva organisation AND a peer from the Zurich organisation. 
 
 # Chaincode queries
-blahblah
+## Read
+```
+peer chaincode query -C swiss-channel -n mycc -c '{"Args":["query","a"]}'
+```
+## Write
+Before we can write to the chaincode, we need to deploy it on at least one peer from the Zurich organization (remember that per the policy that we defined, transactions have to be endorsed by both organisations to be valid):
 
+```
+. scripts/setenv_zh_peer1.sh
+peer chaincode install -n mycc -v 1.0 -p github.com/chaincode/chaincode_example02/go/
+```
+Note that the chaincode has already been instantiated at the channel level, so there is no need to instantiate it again on the zurich peer (the code will be built automatically).
+
+Now we can invoke the chaincode:
+```
+peer chaincode invoke -o orderer.code4fun.com:7050 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/code4fun.com/orderers/orderer.code4fun.com/msp/tlscacerts/tlsca.code4fun.com-cert.pem -C swiss-channel -n mycc --peerAddresses peer1.geneva.code4fun.com:7051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/geneva.code4fun.com/peers/peer1.geneva.code4fun.com/tls/ca.crt --peerAddresses peer1.zurich.code4fun.com:7051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/zurich.code4fun.com/peers/peer1.zurich.code4fun.com/tls/ca.crt -c '{"Args":["invoke","a","b","10"]}'
+
+```
+Have a look at the logs: you should see that a new block has been committed by the 4 peers (not only the peers that are running the chaincode). You can also check that a value of "10" has been transferred from "a" to "b":
+```
+peer chaincode query -C swiss-channel -n mycc -c '{"Args":["query","a"]}'
+peer chaincode query -C swiss-channel -n mycc -c '{"Args":["query","b"]}'
+```
 
 # Troubleshooting
 If you notice issues while starting the network, use this command to properly shut down all the containers:
