@@ -165,7 +165,7 @@ peer chaincode query -C swiss-channel -n mycc -c '{"Args":["query","b"]}'
 
 # Optional
 In this optional part we will play with the Simple Asset chaincode from this tutorial:
-`https://hyperledger-fabric.readthedocs.io/en/latest/chaincode4ade.html`
+https://hyperledger-fabric.readthedocs.io/en/latest/chaincode4ade.html
 
 Follow this tutorial until the **Building Chaincode** section. Then, instead of deploying the chaincode using dev mode, create deploy it on the `swiss-channel` that we previously created:
 
