@@ -179,6 +179,12 @@ peer chaincode instantiate -o orderer.code4fun.com:7050 --tls --cafile /opt/gopa
 ```
 Now craft your own Read and Write queries for the SimpleAsset chaincode, adapting what we did in the previous *Chaincode queries* section.
 
+// Answer:
+// peer chaincode invoke -o orderer.code4fun.com:7050 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/code4fun.com/orderers/orderer.code4fun.com/msp/tlscacerts/tlsca.code4fun.com-cert.pem -C swiss-channel -n sacc --peerAddresses peer1.geneva.code4fun.com:7051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/geneva.code4fun.com/peers/peer1.geneva.code4fun.com/tls/ca.crt --peerAddresses peer1.zurich.code4fun.com:7051 --tlsRootCertFiles /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/zurich.code4fun.com/peers/peer1.zurich.code4fun.com/tls/ca.crt -c '{"Args":["set","toto","tutu"]}'
+// peer chaincode query -C swiss-channel -n sacc -c '{"Args":["get","toto"]}'
+
+
+
 # Troubleshooting
 If you notice issues while starting the network, use this command to properly shut down all the containers:
 ```
