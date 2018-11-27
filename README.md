@@ -136,7 +136,7 @@ Now we can instantiate the chaincode on the channel:
 ```
 peer chaincode instantiate -o orderer.code4fun.com:7050 --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/code4fun.com/orderers/orderer.code4fun.com/msp/tlscacerts/tlsca.code4fun.com-cert.pem -C swiss-channel -n mycc -v 1.0 -c '{"Args":["init","a", "100", "b","200"]}' -P "AND ('GenevaMSP.peer','ZurichMSP.peer')"
 ```
-Note that `-P "AND ('GenevaMSP.peer','ZurichMSP.peer')"` argument. It means that transactions must be endorsed by a peer from the Geneva organisation AND a peer from the Zurich organisation. 
+Note the `-P "AND ('GenevaMSP.peer','ZurichMSP.peer')"` argument. It means that transactions must be endorsed by a peer from the Geneva organisation AND a peer from the Zurich organisation. 
 
 # Chaincode queries
 ## Read
@@ -162,6 +162,22 @@ Have a look at the logs: you should see that a new block has been committed by t
 peer chaincode query -C swiss-channel -n mycc -c '{"Args":["query","a"]}'
 peer chaincode query -C swiss-channel -n mycc -c '{"Args":["query","b"]}'
 ```
+
+# Optional
+In this optional part we will play with the Simple Asset chaincode from this tutorial:
+`https://hyperledger-fabric.readthedocs.io/en/latest/chaincode4ade.html`
+
+Follow this tutorial until the *Building Chaincode* section. Then, instead of deploying the chaincode using dev mode, create deploy it on the `swiss-channel` that we previously created:
+
+```
+. scripts/setenv_gva_peer1.sh
+peer chaincode install -n sacc -v 1.0 -p github.com/chaincode/sacc/
+. scripts/setenv_zh_peer1.sh
+peer chaincode install -n sacc -v 1.0 -p github.com/chaincode/sacc/
+peer chaincode instantiate -o orderer.code4fun.com:7050 --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/code4fun.com/orderers/orderer.code4fun.com/msp/tlscacerts/tlsca.code4fun.com-cert.pem -C swiss-channel -n sacc -v 1.0 -c '{"Args":["key", "value"]}' -P "AND ('GenevaMSP.peer','ZurichMSP.peer')"
+
+```
+Now craft your own Read and Write queries for the SimpleAsset chaincode, adapting what we did in the previous *Chaincode queries* section.
 
 # Troubleshooting
 If you notice issues while starting the network, use this command to properly shut down all the containers:
