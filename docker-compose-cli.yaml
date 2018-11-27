@@ -14,10 +14,10 @@ networks:
 services:
 
   orderer.code4fun.com:
+    container_name: orderer.code4fun.com
     extends:
       file:   base/docker-compose-base.yaml
       service: orderer.code4fun.com
-    container_name: orderer.code4fun.com
     networks:
       - code4fun
 
@@ -80,6 +80,7 @@ services:
         - ./scripts:/opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/
         - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
     depends_on:
+      - orderer.code4fun.com
       - peer1.geneva.code4fun.com
       - peer2.geneva.code4fun.com
       - peer1.zurich.code4fun.com
