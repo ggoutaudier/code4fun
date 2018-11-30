@@ -3,7 +3,8 @@ Welcome to the Code4Fun Hyperledger Meetup in Geneva.
 This page contains the script that we will follow during the workshop.
 
 # Prerequisites
-## Install the Hyperledger prerequisites
+## Mac and Linux users
+### Install the Hyperledger prerequisites
 In this workshop we will play with the latest version of Hyperledger Fabric, currently version 1.3.
 
 Please verify that you have all the prerequisites listed on this page:
@@ -11,7 +12,7 @@ https://hyperledger-fabric.readthedocs.io/en/latest/prereqs.html
 
 You can safely skip the node.js configuration as we will provide a docker image containing the client application.
 
-## Download all you need
+### Download all you need
 First, choose your working directory and clone the code4fun Git repository:
 ```
 git clone https://github.com/ggoutaudier/code4fun
@@ -26,6 +27,17 @@ We need to download the Hyperledger 1.3 docker images and binaries. Hyperledger 
 ```
 curl -sSL http://bit.ly/2ysbOFE | bash -s 1.3.0 1.3.0 0.4.13
 ```
+## Windows users
+The easiest way to get the required environment is to use a Linux Virtual Machine that contains everything.
+
+First, install the latest version of VirtualBox:
+https://www.virtualbox.org/wiki/Downloads
+
+Then download the Ubuntu_Server_18_04.ova virtual appliance locally and import it in VirtualBox (go to File => Import Appliance...).
+Make sure that the VM starts properly and that you can connect to the console of the SSH prompt. User is "code4fun", and password is "code4fun".
+
+
+
 
 # Hyperledger network setup
 
