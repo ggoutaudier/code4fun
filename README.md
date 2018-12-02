@@ -33,8 +33,8 @@ The easiest way to get the required environment is to use a Linux Virtual Machin
 First, install the latest version of VirtualBox:
 https://www.virtualbox.org/wiki/Downloads
 
-Then download the Ubuntu_Server_18_04.ova virtual appliance locally and import it in VirtualBox (go to File => Import Appliance...).
-Make sure that the VM starts properly and that you can connect to the console of the SSH prompt. User is "code4fun", and password is "code4fun".
+We will provide you a VM in hte during the workshop. You will need to import it in VirtualBox (go to File => Import Appliance...).
+User is "code4fun", and password is "code4fun".
 
 
 
