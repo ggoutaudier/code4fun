@@ -31,9 +31,8 @@ curl -sSL http://bit.ly/2ysbOFE | bash -s 1.3.0 1.3.0 0.4.13
 For Windows user we will provide a vagrant box based on virtualbox
 (Mac and Linux user can use it as well if the want to keep their env clean).
 
-Please Install:
- Virtual Box 5.2 https://www.virtualbox.org/wiki/Downloads
- Vagrant https://www.vagrantup.com
+Please Install Virtual Box 5.2 https://www.virtualbox.org/wiki/Downloads
+and Vagrant https://www.vagrantup.com
 
 Open a shell/cmd:
 ```
