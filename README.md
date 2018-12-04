@@ -28,16 +28,21 @@ We need to download the Hyperledger 1.3 docker images and binaries. Hyperledger 
 curl -sSL http://bit.ly/2ysbOFE | bash -s 1.3.0 1.3.0 0.4.13
 ```
 ## Windows users
-The easiest way to get the required environment is to use a Linux Virtual Machine that contains everything.
+For Windows user we will provide a vagrant box based on virtualbox
+(Mac and Linux user can use it as well if the want to keep their env clean).
 
-First, install the latest version of VirtualBox:
-https://www.virtualbox.org/wiki/Downloads
+Please Install:
+ Virtual Box 5.2 https://www.virtualbox.org/wiki/Downloads
+ Vagrant https://www.vagrantup.com
 
-We will provide you a VM on a USB stick during the workshop. You will need to import it in VirtualBox (go to File => Import Appliance...).
-User is "code4fun", and password is "code4fun".
-
-
-
+Open a shell/cmd:
+```
+mkdir code4funhyperledger
+cd code4funhyperledger
+vagrant init code4fun-ch/hyperledger
+vagrant up
+vagrant ssh
+```
 
 # Hyperledger network setup
 
