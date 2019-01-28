@@ -1,5 +1,5 @@
 # Welcome!
-Welcome to the Code4Fun Hyperledger Meetup in Geneva.
+Welcome to the Code4Fun Hyperledger Workshop.
 This page contains the script that we will follow during the workshop.
 
 # Prerequisites
